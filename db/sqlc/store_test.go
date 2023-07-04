@@ -96,10 +96,16 @@ func TestTransferTx(t *testing.T) {
 		existed[k] = true
 	}
 
-	updatedAccount1, err := testQueries.GetAccount(context.Background(), account1.ID)
+	updatedAccount1, err := testQueries.GetAccount(
+		context.Background(),
+		account1.ID,
+	)
 	require.NoError(t, err)
 
-	updatedAccount2, err := testQueries.GetAccount(context.Background(), account2.ID)
+	updatedAccount2, err := testQueries.GetAccount(
+		context.Background(),
+		account2.ID,
+	)
 	require.NoError(t, err)
 	fmt.Println(">> after:", updatedAccount1.Balance, updatedAccount2.Balance)
 
@@ -144,15 +150,19 @@ func TestTransferTxDeadLock(t *testing.T) {
 
 	}
 
-	updatedAccount1, err := testQueries.GetAccount(context.Background(), account1.ID)
+	updatedAccount1, err := testQueries.GetAccount(
+		context.Background(),
+		account1.ID,
+	)
 	require.NoError(t, err)
 
-	updatedAccount2, err := testQueries.GetAccount(context.Background(), account2.ID)
+	updatedAccount2, err := testQueries.GetAccount(
+		context.Background(),
+		account2.ID,
+	)
 	require.NoError(t, err)
 	fmt.Println(">> after:", updatedAccount1.Balance, updatedAccount2.Balance)
 
 	require.Equal(t, account1.Balance, updatedAccount1.Balance)
 	require.Equal(t, account2.Balance, updatedAccount2.Balance)
 }
-
-

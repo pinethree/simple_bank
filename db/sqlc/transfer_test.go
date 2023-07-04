@@ -43,7 +43,10 @@ func TestGetTransfer(t *testing.T) {
 	toAccount := createRandomAccount(t)
 	transfer1 := createRandomTransfer(t, fromAccount, toAccount)
 
-	transfer2, err := testQueries.GetTransfer(context.Background(), transfer1.ID)
+	transfer2, err := testQueries.GetTransfer(
+		context.Background(),
+		transfer1.ID,
+	)
 	require.NoError(t, err)
 	require.NotEmpty(t, transfer2)
 
@@ -51,7 +54,12 @@ func TestGetTransfer(t *testing.T) {
 	require.Equal(t, transfer1.ToAccountID, transfer2.ToAccountID)
 	require.Equal(t, transfer1.Amount, transfer2.Amount)
 
-	require.WithinDuration(t, transfer1.CreatedAt, transfer2.CreatedAt, time.Second)
+	require.WithinDuration(
+		t,
+		transfer1.CreatedAt,
+		transfer2.CreatedAt,
+		time.Second,
+	)
 }
 
 func TestListTransfers(t *testing.T) {
